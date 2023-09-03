@@ -1,5 +1,15 @@
 # Cross Site Scripting(XSS) vulnerabilities preventions in Java and JavaScript
 
+## Table of contents
+1. [What is Cross-site Scripting](#what-is-cross-site-scripting)
+2. [Types of XSS attacks](#types-of-xss-attacks)
+3. [Defending against XSS attack](#defending-against-xss-attack)
+    - [Output encode all user supplied inputs](#output-encode-all-user-supplied-inputs)
+    - [Perform allow list input validation on server side for all user inputs](#perform-allow-list-input-validation-on-server-side-for-all-user-inputs)
+    - [Enable security headers](#enable-security-headers)
+    - [Set HttpOnly Cookie](#set-httponly-cookie)
+
+## What is Cross-site Scripting?
 In Cross-site Scripting (XSS) attack, the attacker aims to execute malicious scripts in a web browser of the victim by including malicious code in a legitimate web page or web application.
 The attacker can carry out any actions that the user is able to perform and to access any of the user's data. If the victim user has privileged access within the application, then the attacker might be able to gain full control over all of the application's functionality and data.
 
@@ -21,7 +31,7 @@ The root cause of XSS vulnerabilities is when a web application uses untrusted i
 
 4. Set HttpOnly Cookie
 
-### (1) Output encode all user supplied inputs:
+### Output encode all user supplied inputs:
 Fixed code examples using Encoder from [OWASP Java Encoder Project](https://wiki.owasp.org/index.php/OWASP_Java_Encoder_Project)
 
 ```
@@ -191,7 +201,7 @@ To prevent DOM-based cross-site scripting, sanitize all untrusted data, even if 
 </script>
 ```
 
-### (2) Perform allow list input validation on server side for all user inputs:
+### Perform allow list input validation on server side for all user inputs:
 As a defense-in-depth strategy, server side input validation is essential for securing an application. [Bean Validation](https://beanvalidation.org/) or commonly known as [JSR-380](https://beanvalidation.org/2.0-jsr380/) is a Java standard that is used to perform validation in Java applications.
 
 Bean Validation works by defining constraints to the fields of a class by annotating them with certain annotations.
@@ -298,7 +308,7 @@ public void doPost( HttpServletRequest request, HttpServletResponse response) {
 
 [Overview (Apache Commons Validator 1.7 API)](https://commons.apache.org/proper/commons-validator/apidocs/overview-summary.html)
 
-### (3) Enable security headers:
+### Enable security headers:
 X-XSS header is used to defend against Cross-Site Scripting attacks. Using this feature, the browser does not render when it detects an XSS attempt. However, some web browsers haven't implemented the XSS auditor. In this case, they don't make use of the X-XSS-Protection header.
 
 To overcome this issue, we can also use the Content Security Policy (CSP) feature. The Content-Security-Policy header is an improved version of the X-XSS-Protection header and provides an additional layer of security.
@@ -331,7 +341,7 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
 [Content Security Policy (CSP) - HTTP | MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
 
 
-### (4) Set HttpOnly Cookie:
+### Set HttpOnly Cookie:
 HttpOnly cookies are used to prevent cross-site scripting (XSS) attacks and are not accessible via JavaScript's Document.cookie API.
 
 When the HttpOnly flag is set for a cookie, it tells the browser that this particular cookie should only be accessed by the server.
