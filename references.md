@@ -3,7 +3,9 @@ https://knowledge-base.secureflag.com
 https://www.certifiedsecure.com/checklists  
 https://sucuri.net/guides/owasp-top-10-security-vulnerabilities-2020  
 https://medium.com/@cxosmo/owasp-top-10-real-world-examples-part-1-a540c4ea2df5  
-https://github.com/bkimminich/it-security-lecture  
+https://github.com/bkimminich/it-security-lecture
+https://securityknowledgeframework.org  
+https://secureby.design/dashboard  
 
 
 ## Cross-Site Scripting
